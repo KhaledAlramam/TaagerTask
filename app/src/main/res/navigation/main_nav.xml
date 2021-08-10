@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/itemsFragment"
-        android:name="com.khaled.taager.ItemsFragment"
+        android:name="com.khaled.taager.ui.allproducts.ProductsFragment"
         android:label="fragment_items"
         tools:layout="@layout/fragment_items">
         <action
@@ -16,7 +16,11 @@
     </fragment>
     <fragment
         android:id="@+id/itemDetailsFragment"
-        android:name="com.khaled.taager.ItemDetailsFragment"
+        android:name="com.khaled.taager.ui.productdetails.ProductDetailsFragment"
         android:label="fragment_item_details"
-        tools:layout="@layout/fragment_item_details" />
+        tools:layout="@layout/fragment_item_details" >
+        <argument
+            android:name="product"
+            app:argType="com.khaled.taager.data.model.ProductItem" />
+    </fragment>
 </navigation>
