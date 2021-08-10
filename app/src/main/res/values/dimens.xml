@@ -2,4 +2,5 @@
 <resources>
     <dimen name="s_padding">8dp</dimen>
     <dimen name="header_text">18sp</dimen>
+    <dimen name="large_title_text">20sp</dimen>
 </resources>
