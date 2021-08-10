@@ -20,6 +20,7 @@ class ProductsFragment : Fragment(R.layout.fragment_items), OnPositionClicked {
 
     private var productAdapter = ProductAdapter(this)
     private val viewModel by viewModels<ProductViewModel>()
+
     private var _binding: FragmentItemsBinding? = null
     private val binding
         get() =
@@ -41,6 +42,12 @@ class ProductsFragment : Fragment(R.layout.fragment_items), OnPositionClicked {
         }
     }
 
+    /**
+     * According to use cause we are loading data each time fragment is created
+     * on the other hand, we can cache them in the activity viewModel
+     * and get them with Shared ViewModel between fragment and activity
+     * using activityViewModels
+     * */
     private fun getAllProducts() {
         viewModel.getAllProducts().observe(viewLifecycleOwner) { resources ->
             when (resources) {
@@ -73,16 +80,15 @@ class ProductsFragment : Fragment(R.layout.fragment_items), OnPositionClicked {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
-    }
-
     override fun onClick(position: Int) {
         val currentProduct = productAdapter.currentList[position]
-        val action =ProductsFragmentDirections
+        val action = ProductsFragmentDirections
             .actionItemsFragmentToItemDetailsFragment(currentProduct)
         findNavController().navigate(action)
     }
 
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
 }
