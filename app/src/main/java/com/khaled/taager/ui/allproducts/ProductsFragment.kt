@@ -21,7 +21,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class ProductsFragment : Fragment(R.layout.fragment_items), OnProductClicked {
 
-    var productAdapter = ProductAdapter(this)
+    private var productAdapter = ProductAdapter(this)
     private val viewModel by viewModels<ProductViewModel>()
     private var _binding: FragmentItemsBinding? = null
     private val binding

@@ -12,7 +12,7 @@ import com.khaled.taager.utils.OnProductClicked
 
 class CustomViewHolder(val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
 
-class ProductAdapter(val listener: OnProductClicked) : ListAdapter<ProductItem, CustomViewHolder>(Companion) {
+class ProductAdapter(private val listener: OnProductClicked) : ListAdapter<ProductItem, CustomViewHolder>(Companion) {
     companion object : DiffUtil.ItemCallback<ProductItem>() {
         override fun areItemsTheSame(oldItem: ProductItem, newItem: ProductItem): Boolean =
             oldItem.id == newItem.id
