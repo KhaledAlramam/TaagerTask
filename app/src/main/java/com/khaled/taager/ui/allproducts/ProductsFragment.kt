@@ -1,9 +1,7 @@
 package com.khaled.taager.ui.allproducts
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -13,13 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.khaled.taager.R
 import com.khaled.taager.data.model.ProductItem
 import com.khaled.taager.databinding.FragmentItemsBinding
-import com.khaled.taager.utils.OnProductClicked
+import com.khaled.taager.utils.OnPositionClicked
 import com.khaled.taager.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class ProductsFragment : Fragment(R.layout.fragment_items), OnProductClicked {
+class ProductsFragment : Fragment(R.layout.fragment_items), OnPositionClicked {
 
     private var productAdapter = ProductAdapter(this)
     private val viewModel by viewModels<ProductViewModel>()
@@ -81,9 +78,10 @@ class ProductsFragment : Fragment(R.layout.fragment_items), OnProductClicked {
         super.onDestroy()
     }
 
-    override fun onClick(product: ProductItem) {
+    override fun onClick(position: Int) {
+        val currentProduct = productAdapter.currentList[position]
         val action =ProductsFragmentDirections
-            .actionItemsFragmentToItemDetailsFragment(product)
+            .actionItemsFragmentToItemDetailsFragment(currentProduct)
         findNavController().navigate(action)
     }
 
